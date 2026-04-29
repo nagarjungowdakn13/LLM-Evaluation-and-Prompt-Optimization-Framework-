@@ -273,6 +273,3 @@ prompt manager, and optimizer.
 
 Captured from the live dashboard.
 
-![Dashboard top view](assets/screenshots/dashboard-top.png)
-
-![Dashboard chart view](assets/screenshots/dashboard-mid.png)
