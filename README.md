@@ -119,12 +119,12 @@ Each (prompt, example) evaluation produces:
 
 A weighted blend of:
 
-| Sub-metric | What it measures |
-|---|---|
-| `exact_match` | Strict equality after case/whitespace/JSON normalisation |
-| `semantic_similarity` | Cosine similarity (TF-IDF or embeddings) between predicted and expected text |
-| `schema_valid` | 1.0 if the output parses and conforms to `data/schemas/qa_schema.json`, else 0.0 |
-| `rule_based` | Pass-rate over weighted custom rules (e.g. "answer is non-empty", "confidence is enum") |
+| Sub-metric            | What it measures                                                                        |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| `exact_match`         | Strict equality after case/whitespace/JSON normalisation                                |
+| `semantic_similarity` | Cosine similarity (TF-IDF or embeddings) between predicted and expected text            |
+| `schema_valid`        | 1.0 if the output parses and conforms to `data/schemas/qa_schema.json`, else 0.0        |
+| `rule_based`          | Pass-rate over weighted custom rules (e.g. "answer is non-empty", "confidence is enum") |
 
 ### Consistency (weight 0.2)
 
@@ -136,14 +136,15 @@ prompt instability.
 ### Hallucination (weight 0.3)
 
 Tokenises the model output and the **grounding context** (expected answer
-+ supplied context). Any content tokens or numbers in the output that
-appear in neither are flagged as ungrounded. The detector outputs:
 
-- `ungrounded_terms` — the literal tokens flagged
-- `score` — 1 − (ungrounded / total content tokens)
-- `combined_score` — `score × consistency` (because flaky outputs are also
+- supplied context). Any content tokens or numbers in the output that
+  appear in neither are flagged as ungrounded. The detector outputs:
+
+* `ungrounded_terms` — the literal tokens flagged
+* `score` — 1 − (ungrounded / total content tokens)
+* `combined_score` — `score × consistency` (because flaky outputs are also
   hallucination evidence)
-- `is_hallucinated` — boolean against a configurable threshold
+* `is_hallucinated` — boolean against a configurable threshold
 
 The combined score is the one used in the overall blend. Multiplying by
 consistency exploits a real correlation: when a model is confident in a
@@ -199,13 +200,13 @@ Reliability improvements that fall out of the same machinery:
 
 ```yaml
 llm:
-  provider: mock        # mock | openai | anthropic
+  provider: mock # mock | openai | anthropic
   model: claude-haiku-4-5-20251001
   temperature: 0.0
 
 metrics:
   semantic_similarity:
-    method: tfidf       # tfidf (zero deps) | embeddings (sentence-transformers)
+    method: tfidf # tfidf (zero deps) | embeddings (sentence-transformers)
     threshold: 0.75
 
 evaluation:
@@ -257,17 +258,17 @@ prompt manager, and optimizer.
 
 ## Project layout summary
 
-| Path | Purpose |
-|---|---|
-| `main.py` | CLI entry point |
-| `dashboard.py` | Streamlit dashboard for live demos |
-| `config.yaml` | All tunables |
-| `src/` | Framework code (modular by concern) |
-| `data/prompts/` | Prompt templates |
-| `data/schemas/` | JSON schemas |
-| `data/dataset.json` | Evaluation set + mock answers |
-| `reports/` | Generated Markdown / JSON reports |
-| `tests/` | Unit tests |
+| Path                | Purpose                             |
+| ------------------- | ----------------------------------- |
+| `main.py`           | CLI entry point                     |
+| `dashboard.py`      | Streamlit dashboard for live demos  |
+| `config.yaml`       | All tunables                        |
+| `src/`              | Framework code (modular by concern) |
+| `data/prompts/`     | Prompt templates                    |
+| `data/schemas/`     | JSON schemas                        |
+| `data/dataset.json` | Evaluation set + mock answers       |
+| `reports/`          | Generated Markdown / JSON reports   |
+| `tests/`            | Unit tests                          |
 
 ## Screenshots
 
