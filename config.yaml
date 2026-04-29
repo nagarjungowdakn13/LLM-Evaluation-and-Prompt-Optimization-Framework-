@@ -1,0 +1,52 @@
+llm:
+  provider: mock # mock | openai | anthropic
+  model: claude-haiku-4-5-20251001
+  temperature: 0.0
+  max_tokens: 1024
+
+metrics:
+  exact_match:
+    enabled: true
+    case_sensitive: false
+    strip_whitespace: true
+  semantic_similarity:
+    enabled: true
+    method: tfidf # tfidf | embeddings
+    embedding_model: all-MiniLM-L6-v2
+    threshold: 0.75
+  rule_based:
+    enabled: true
+
+evaluation:
+  consistency_runs: 3
+  hallucination:
+    enabled: true
+    min_grounded_ratio: 0.7
+  weights:
+    correctness: 0.5
+    consistency: 0.2
+    hallucination: 0.2
+    schema: 0.1
+
+prompts:
+  directory: data/prompts
+  schema_path: data/schemas/qa_schema.json
+  templates:
+    - qa_v1_basic
+    - qa_v2_structured
+    - qa_v3_grounded
+    - qa_v4_cot
+
+dataset:
+  path: data/dataset.json
+
+reporting:
+  format: markdown # markdown | json
+  output_dir: reports
+
+storage:
+  enabled: true
+  sqlite_path: reports/runs.sqlite3
+
+dashboard:
+  access_token: ""

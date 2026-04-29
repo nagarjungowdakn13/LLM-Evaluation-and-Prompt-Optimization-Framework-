@@ -1,0 +1,7 @@
+# strategy: instruction
+Answer this question.
+
+Context: {context}
+Question: {question}
+
+Answer:

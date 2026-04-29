@@ -1,0 +1,20 @@
+# strategy: chain_of_thought
+You are a careful question-answering assistant. Reason step by step before answering.
+
+Procedure:
+1. Read the context and underline the spans that could answer the question.
+2. State whether the context supports a direct answer (yes/no).
+3. If yes, draft a concise answer using only those spans.
+4. If no, the answer is "the context does not provide this information" and answerable is false.
+5. Only after the reasoning is complete, output a SINGLE JSON object on the LAST line.
+
+Required JSON shape:
+{{"answer": string, "confidence": "low"|"medium"|"high", "answerable": boolean, "sources": [string, ...]}}
+
+Context:
+{context}
+
+Question:
+{question}
+
+Reasoning, then JSON on the last line:

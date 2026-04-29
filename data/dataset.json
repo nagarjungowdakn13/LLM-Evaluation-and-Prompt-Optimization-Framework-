@@ -1,0 +1,187 @@
+{
+  "name": "qa_grounded_v1",
+  "description": "Small grounded QA evaluation set. Each example carries pre-canned mock LLM outputs per prompt template so the framework runs offline.",
+  "examples": [
+    {
+      "id": "qa-001",
+      "context": "The Eiffel Tower is a wrought-iron lattice tower located on the Champ de Mars in Paris, France. It was completed in 1889 and stands 330 metres tall.",
+      "question": "Where is the Eiffel Tower located and how tall is it?",
+      "expected_output": {
+        "answer": "The Eiffel Tower is located in Paris, France and stands 330 metres tall.",
+        "confidence": "high",
+        "answerable": true,
+        "sources": [
+          "Paris, France",
+          "330 metres tall"
+        ]
+      },
+      "mock_responses": {
+        "qa_v1_basic": [
+          "The Eiffel Tower is in Paris, France. It was built by Gustave Eiffel and is about 1063 feet tall, attracting 7 million visitors a year.",
+          "Located in Paris. Stands 324 metres tall including the antenna and was the tallest structure in the world until 1930.",
+          "Eiffel Tower is in Paris, France, around 300 metres in height, built for the 1889 World's Fair."
+        ],
+        "qa_v2_structured": [
+          "{\"answer\": \"Paris, France; 330 metres\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Paris, France\"]}",
+          "{\"answer\": \"Paris, France; 330 metres\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Paris, France\", \"330 metres\"]}"
+        ],
+        "qa_v3_grounded": [
+          "{\"answer\": \"The Eiffel Tower is located in Paris, France and stands 330 metres tall.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Paris, France\", \"330 metres tall\"]}"
+        ],
+        "qa_v4_cot": [
+          "Step 1 — Underlining: relevant spans located in context.\nStep 2 — Direct answer is supported.\nStep 3 — Drafting the concise answer using only those spans.\n{\"answer\": \"The Eiffel Tower is located in Paris, France and stands 330 metres tall.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Paris, France\", \"330 metres tall\"]}"
+        ]
+      }
+    },
+    {
+      "id": "qa-002",
+      "context": "Python is a high-level, general-purpose programming language. Created by Guido van Rossum, it was first released in 1991. Python 3.0 was released in 2008.",
+      "question": "Who created Python and when was Python 3.0 released?",
+      "expected_output": {
+        "answer": "Python was created by Guido van Rossum and Python 3.0 was released in 2008.",
+        "confidence": "high",
+        "answerable": true,
+        "sources": [
+          "Created by Guido van Rossum",
+          "Python 3.0 was released in 2008"
+        ]
+      },
+      "mock_responses": {
+        "qa_v1_basic": [
+          "Python was created by Guido van Rossum in the Netherlands while he worked at CWI. Python 3.0 came out in December 2008 and dropped backward compatibility.",
+          "Created by Guido van Rossum, Python 3 was released in 2009.",
+          "Python is a Dutch invention by Guido van Rossum; Python 3.0 launched in late 2008."
+        ],
+        "qa_v2_structured": [
+          "{\"answer\": \"Guido van Rossum; Python 3.0 in 2008\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Guido van Rossum\", \"Python 3.0 was released in 2008\"]}",
+          "{\"answer\": \"Created by Guido van Rossum, Python 3 released in 2008\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Guido van Rossum\"]}"
+        ],
+        "qa_v3_grounded": [
+          "{\"answer\": \"Python was created by Guido van Rossum and Python 3.0 was released in 2008.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Created by Guido van Rossum\", \"Python 3.0 was released in 2008\"]}"
+        ],
+        "qa_v4_cot": [
+          "Step 1 — Underlining: relevant spans located in context.\nStep 2 — Direct answer is supported.\nStep 3 — Drafting the concise answer using only those spans.\n{\"answer\": \"Python was created by Guido van Rossum and Python 3.0 was released in 2008.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"Created by Guido van Rossum\", \"Python 3.0 was released in 2008\"]}"
+        ]
+      }
+    },
+    {
+      "id": "qa-003",
+      "context": "The average distance from Earth to Mars is about 225 million kilometres, but the distance varies throughout the year because both planets follow elliptical orbits.",
+      "question": "What is the average distance from Earth to Mars?",
+      "expected_output": {
+        "answer": "About 225 million kilometres on average.",
+        "confidence": "high",
+        "answerable": true,
+        "sources": [
+          "average distance from Earth to Mars is about 225 million kilometres"
+        ]
+      },
+      "mock_responses": {
+        "qa_v1_basic": [
+          "Mars is about 140 million miles from Earth on average, though it can be as close as 33.9 million miles during opposition.",
+          "Roughly 225 million kilometres on average; closest approach is around 54 million km.",
+          "About 230 million km on average. The two planets line up every 26 months."
+        ],
+        "qa_v2_structured": [
+          "{\"answer\": \"About 225 million kilometres\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"225 million kilometres\"]}",
+          "{\"answer\": \"Around 225 million km on average.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"225 million kilometres\"]}"
+        ],
+        "qa_v3_grounded": [
+          "{\"answer\": \"About 225 million kilometres on average.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"average distance from Earth to Mars is about 225 million kilometres\"]}"
+        ],
+        "qa_v4_cot": [
+          "Step 1 — Underlining: relevant spans located in context.\nStep 2 — Direct answer is supported.\nStep 3 — Drafting the concise answer using only those spans.\n{\"answer\": \"About 225 million kilometres on average.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"average distance from Earth to Mars is about 225 million kilometres\"]}"
+        ]
+      }
+    },
+    {
+      "id": "qa-004",
+      "context": "The provided document discusses the architectural history of the Sydney Opera House but does not state the construction cost.",
+      "question": "What was the final construction cost of the Sydney Opera House?",
+      "expected_output": {
+        "answer": "The provided context does not state the construction cost of the Sydney Opera House.",
+        "confidence": "high",
+        "answerable": false,
+        "sources": []
+      },
+      "mock_responses": {
+        "qa_v1_basic": [
+          "The Sydney Opera House cost about 102 million Australian dollars to build, finished in 1973 after a long delay.",
+          "Around AUD 102 million.",
+          "It cost roughly 100 million dollars."
+        ],
+        "qa_v2_structured": [
+          "{\"answer\": \"Approximately AUD 102 million\", \"confidence\": \"medium\", \"answerable\": true, \"sources\": []}",
+          "{\"answer\": \"Around 102 million AUD\", \"confidence\": \"medium\", \"answerable\": true, \"sources\": []}"
+        ],
+        "qa_v3_grounded": [
+          "{\"answer\": \"The provided context does not state the construction cost of the Sydney Opera House.\", \"confidence\": \"high\", \"answerable\": false, \"sources\": []}"
+        ],
+        "qa_v4_cot": [
+          "Step 1 — Underlining: relevant spans located in context.\nStep 2 — Direct answer is supported.\nStep 3 — Drafting the concise answer using only those spans.\n{\"answer\": \"The provided context does not state the construction cost of the Sydney Opera House.\", \"confidence\": \"high\", \"answerable\": false, \"sources\": []}"
+        ]
+      }
+    },
+    {
+      "id": "qa-005",
+      "context": "The Berlin Wall divided East and West Berlin from 13 August 1961 until 9 November 1989, when East Germany announced that citizens could cross the border freely.",
+      "question": "On what date did the Berlin Wall fall?",
+      "expected_output": {
+        "answer": "9 November 1989.",
+        "confidence": "high",
+        "answerable": true,
+        "sources": [
+          "9 November 1989"
+        ]
+      },
+      "mock_responses": {
+        "qa_v1_basic": [
+          "The Berlin Wall fell on November 9, 1989, leading to German reunification on October 3, 1990.",
+          "It was torn down on 9 November 1989 after Günter Schabowski's press conference.",
+          "9 November 1989, after almost 28 years."
+        ],
+        "qa_v2_structured": [
+          "{\"answer\": \"9 November 1989\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"9 November 1989\"]}",
+          "{\"answer\": \"November 9, 1989\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"9 November 1989\"]}"
+        ],
+        "qa_v3_grounded": [
+          "{\"answer\": \"9 November 1989.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"9 November 1989\"]}"
+        ],
+        "qa_v4_cot": [
+          "Step 1 — Underlining: relevant spans located in context.\nStep 2 — Direct answer is supported.\nStep 3 — Drafting the concise answer using only those spans.\n{\"answer\": \"9 November 1989.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"9 November 1989\"]}"
+        ]
+      }
+    },
+    {
+      "id": "qa-006",
+      "context": "Earth has five oceans: the Pacific, Atlantic, Indian, Southern, and Arctic. The Pacific is the largest by both area and volume.",
+      "question": "How many oceans are there and which is the largest?",
+      "expected_output": {
+        "answer": "There are five oceans, and the Pacific is the largest.",
+        "confidence": "high",
+        "answerable": true,
+        "sources": [
+          "five oceans",
+          "The Pacific is the largest"
+        ]
+      },
+      "mock_responses": {
+        "qa_v1_basic": [
+          "There are 4 oceans on Earth and the Pacific Ocean is the largest, covering more than 60 million square miles.",
+          "Five oceans, largest is the Pacific.",
+          "Earth has five oceans: Pacific, Atlantic, Indian, Southern, Arctic. The biggest is the Pacific."
+        ],
+        "qa_v2_structured": [
+          "{\"answer\": \"Five oceans; Pacific is the largest\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"five oceans\"]}",
+          "{\"answer\": \"5 oceans, the largest is the Pacific\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"five oceans\", \"Pacific is the largest\"]}"
+        ],
+        "qa_v3_grounded": [
+          "{\"answer\": \"There are five oceans, and the Pacific is the largest.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"five oceans\", \"The Pacific is the largest\"]}"
+        ],
+        "qa_v4_cot": [
+          "Step 1 — Underlining: relevant spans located in context.\nStep 2 — Direct answer is supported.\nStep 3 — Drafting the concise answer using only those spans.\n{\"answer\": \"There are five oceans, and the Pacific is the largest.\", \"confidence\": \"high\", \"answerable\": true, \"sources\": [\"five oceans\", \"The Pacific is the largest\"]}"
+        ]
+      }
+    }
+  ]
+}

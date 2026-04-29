@@ -1,0 +1,9 @@
+Summarize the document faithfully and keep it to one sentence.
+
+Document:
+{document}
+
+Instruction:
+{instruction}
+
+Focus on the main event, the outcome, and the key number if present.

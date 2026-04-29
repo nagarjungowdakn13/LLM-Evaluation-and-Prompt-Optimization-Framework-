@@ -1,0 +1,49 @@
+llm:
+  provider: mock
+  model: mock-llm
+  temperature: 0.0
+  max_tokens: 512
+
+metrics:
+  exact_match:
+    enabled: true
+    case_sensitive: false
+    strip_whitespace: true
+  semantic_similarity:
+    enabled: true
+    method: tfidf
+    embedding_model: all-MiniLM-L6-v2
+    threshold: 0.72
+  rule_based:
+    enabled: false
+
+evaluation:
+  consistency_runs: 3
+  hallucination:
+    enabled: true
+    min_grounded_ratio: 0.7
+  weights:
+    correctness: 0.55
+    consistency: 0.25
+    hallucination: 0.20
+
+prompts:
+  directory: data/prompts
+  templates:
+    - sum_v1_basic
+    - sum_v2_structured
+    - sum_v3_grounded
+
+dataset:
+  path: data/dataset_summarization.json
+
+reporting:
+  format: markdown
+  output_dir: reports
+
+storage:
+  enabled: true
+  sqlite_path: reports/runs.sqlite3
+
+dashboard:
+  access_token: ""

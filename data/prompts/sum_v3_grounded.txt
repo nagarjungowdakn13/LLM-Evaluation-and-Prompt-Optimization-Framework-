@@ -1,0 +1,9 @@
+Write a grounded summary using only facts stated in the document.
+
+Document:
+{document}
+
+Instruction:
+{instruction}
+
+Avoid adding new details, and keep the summary compact.

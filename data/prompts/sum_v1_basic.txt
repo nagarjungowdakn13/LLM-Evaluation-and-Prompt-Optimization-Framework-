@@ -1,0 +1,9 @@
+You are a concise summarization assistant.
+
+Document:
+{document}
+
+Instruction:
+{instruction}
+
+Return a short summary that preserves the key facts.

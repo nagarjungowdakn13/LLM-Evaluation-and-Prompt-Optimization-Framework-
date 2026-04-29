@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    volumes:
+      - ./:/app
+      - ./reports:/app/reports
+    command: streamlit run dashboard.py --server.address=0.0.0.0 --server.port=8501

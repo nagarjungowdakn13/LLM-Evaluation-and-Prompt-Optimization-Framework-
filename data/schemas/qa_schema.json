@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "QAResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "confidence", "answerable", "sources"],
+  "properties": {
+    "answer": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Natural-language answer grounded in the provided context."
+    },
+    "confidence": {
+      "type": "string",
+      "enum": ["low", "medium", "high"]
+    },
+    "answerable": {
+      "type": "boolean",
+      "description": "False if the context does not contain enough information to answer."
+    },
+    "sources": {
+      "type": "array",
+      "items": {"type": "string"},
+      "description": "Identifiers or quotes from the context that support the answer."
+    }
+  }
+}

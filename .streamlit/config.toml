@@ -1,0 +1,16 @@
+[theme]
+base = "light"
+
+# Warm parchment palette — like an aged-paper craft journal.
+primaryColor            = "#b85c38"   # terracotta accents (buttons, focus)
+backgroundColor         = "#f7f0e1"   # warm paper / parchment
+secondaryBackgroundColor = "#ece1c9"  # slightly darker paper (sidebar, cards)
+textColor               = "#3b2e22"   # sepia ink
+
+font = "serif"
+
+[browser]
+gatherUsageStats = false
+
+[server]
+headless = true

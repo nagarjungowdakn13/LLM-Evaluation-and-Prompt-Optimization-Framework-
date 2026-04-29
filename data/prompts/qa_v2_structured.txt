@@ -1,0 +1,16 @@
+# strategy: instruction
+You are a question-answering assistant. Read the context and answer the question.
+
+Respond with a JSON object using these keys:
+- answer: a short natural-language answer
+- confidence: one of "low", "medium", "high"
+- answerable: true if the context supports the answer, otherwise false
+- sources: a list of supporting quotes or identifiers from the context
+
+Context:
+{context}
+
+Question:
+{question}
+
+JSON response:

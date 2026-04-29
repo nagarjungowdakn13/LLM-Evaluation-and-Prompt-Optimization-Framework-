@@ -1,0 +1,15 @@
+numpy>=1.24.0
+pyyaml>=6.0
+jsonschema>=4.0.0
+pandas>=2.0.0
+
+# Dashboard (optional — required only for `streamlit run dashboard.py`)
+streamlit>=1.30.0
+plotly>=5.18.0
+
+# Optional providers (uncomment to enable real LLM calls)
+# openai>=1.0.0
+# anthropic>=0.18.0
+
+# Optional embeddings backend (falls back to TF-IDF cosine if absent)
+# sentence-transformers>=2.2.0

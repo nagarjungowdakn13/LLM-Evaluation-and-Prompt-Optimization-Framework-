@@ -1,0 +1,55 @@
+{
+  "examples": [
+    {
+      "id": "sum-1",
+      "document": "The city council approved a new bike lane network after a six-month pilot showed fewer accidents and faster commute times for cyclists.",
+      "instruction": "Summarize the document in one sentence.",
+      "expected_output": "The city council approved a bike lane network after a pilot showed it reduced accidents and improved commute times for cyclists.",
+      "mock_responses": {
+        "sum_v1_basic": [
+          "The city council approved new bike lanes after a pilot showed safer and faster cycling commutes."
+        ],
+        "sum_v2_structured": [
+          "The council backed a bike lane network after a pilot found fewer accidents and quicker bike commutes."
+        ],
+        "sum_v3_grounded": [
+          "After a six-month pilot, the city council approved a bike lane network because it lowered accidents and sped up cyclists' commutes."
+        ]
+      }
+    },
+    {
+      "id": "sum-2",
+      "document": "A regional hospital introduced a new triage chatbot that cut average waiting time at the emergency desk by 18 percent during the first month.",
+      "instruction": "Write a concise summary.",
+      "expected_output": "A regional hospital's triage chatbot cut emergency desk waiting time by 18 percent in its first month.",
+      "mock_responses": {
+        "sum_v1_basic": [
+          "A hospital's triage chatbot reduced emergency desk waiting times by 18 percent in its first month."
+        ],
+        "sum_v2_structured": [
+          "The hospital's new triage chatbot cut emergency waiting times by 18 percent during its first month."
+        ],
+        "sum_v3_grounded": [
+          "In its first month, the regional hospital's triage chatbot reduced emergency desk waiting time by 18 percent."
+        ]
+      }
+    },
+    {
+      "id": "sum-3",
+      "document": "Engineers completed the bridge inspection early after drone imagery confirmed no structural damage following the storm.",
+      "instruction": "Summarize the situation in one sentence.",
+      "expected_output": "Engineers finished the bridge inspection early after drone imagery confirmed the storm caused no structural damage.",
+      "mock_responses": {
+        "sum_v1_basic": [
+          "Engineers completed the bridge inspection early because drone imagery showed no structural damage after the storm."
+        ],
+        "sum_v2_structured": [
+          "Drone imagery confirmed no storm damage, so engineers finished the bridge inspection early."
+        ],
+        "sum_v3_grounded": [
+          "After the storm, drone imagery showed no structural damage, letting engineers finish the bridge inspection early."
+        ]
+      }
+    }
+  ]
+}
