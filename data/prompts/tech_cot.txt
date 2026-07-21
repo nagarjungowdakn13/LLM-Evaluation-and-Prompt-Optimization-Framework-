@@ -1,0 +1,16 @@
+# strategy: chain_of_thought
+Answer the question by breaking down your reasoning step by step.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Let's think step by step:
+Step 1 — Analyze the question and context carefully.
+Step 2 — Identify grounded evidence and check for unanswerability or false premises.
+Step 3 — State your step-by-step reasoning clearly.
+Step 4 — Provide the final concise answer.
+
+Reasoning and Answer:

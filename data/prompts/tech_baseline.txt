@@ -1,0 +1,10 @@
+# strategy: direct_zero_shot
+Answer the following question directly and concisely based on your general knowledge and any context provided.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Answer:

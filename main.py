@@ -1,4 +1,4 @@
-"""CLI entry point for the LLM Evaluation and Prompt Optimization Framework."""
+"""CLI entry point for the LLM Evaluation and Prompt Optimization Framework & Study."""
 
 from __future__ import annotations
 
@@ -33,6 +33,7 @@ from src.prompts import (
 from src.reporting import Reporter
 from src.schema import SchemaValidator, load_schema
 from src.utils.logger import get_logger
+from src.study import StudyRunner
 
 
 def load_config(path: str | Path) -> dict:
@@ -182,6 +183,17 @@ def cmd_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_run_study(args: argparse.Namespace) -> int:
+    config = load_config(args.config)
+    provider = getattr(args, "provider", None) or config.get("llm", {}).get("provider", "mock")
+    models = [m.strip() for m in args.models.split(",") if m.strip()] if getattr(args, "models", None) else None
+    datasets = [d.strip() for d in args.datasets.split(",") if d.strip()] if getattr(args, "datasets", None) else None
+
+    runner = StudyRunner(config=config)
+    runner.run_study(provider=provider, models=models, datasets=datasets)
+    return 0
+
+
 def cmd_optimize(args: argparse.Namespace) -> int:
     log = get_logger()
     config = apply_overrides(load_config(args.config), args)
@@ -263,6 +275,12 @@ def main() -> int:
     p_run = sub.add_parser("run", help="Run the full batch evaluation")
     p_run.add_argument("--templates", nargs="*", help="Override templates from config")
     p_run.set_defaults(func=cmd_run)
+
+    p_study = sub.add_parser("run-study", help="Run the Hallucination Reduction Study grid")
+    p_study.add_argument("--provider", default="mock", choices=["mock", "openai", "anthropic"])
+    p_study.add_argument("--models", help="Comma-separated models to evaluate")
+    p_study.add_argument("--datasets", help="Comma-separated datasets to evaluate")
+    p_study.set_defaults(func=cmd_run_study)
 
     p_opt = sub.add_parser(
         "optimize",

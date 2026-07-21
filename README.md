@@ -1,21 +1,28 @@
-# LLM Evaluation and Prompt Optimization Framework
+# LLM Evaluation Framework & Hallucination Reduction Study (`hallueval`)
 
-A modular Python framework for evaluating large-language-model outputs and
-ranking prompt templates by quality. It scores each (prompt, example) pair
-on **correctness**, **consistency**, and **hallucination**, validates JSON
-outputs against a schema, applies rule-based checks, and emits a ranked
-report so you can pick the prompt that performs best.
+An empirical study instrument and modular Python framework for evaluating Large Language Models, benchmarking hallucination-reduction techniques, and ranking prompt strategies by factual grounding and reliability.
 
-The framework runs offline against a deterministic mock LLM so you can
-explore the pipeline immediately, and ships pluggable OpenAI / Anthropic
-clients for production use.
+> 📖 **Read Full Study Research Paper**: [`HALLUCINATION_REDUCTION_STUDY.md`](HALLUCINATION_REDUCTION_STUDY.md)  
+> 📊 **Error Taxonomy Dataset**: [`reports/error_taxonomy_analysis.csv`](reports/error_taxonomy_analysis.csv)  
+> 📈 **Study Execution Grid**: [`reports/study_results_grid.json`](reports/study_results_grid.json)
 
-## Quick start
+---
+
+## 🔬 Hallucination Reduction Study Quickstart
+
+Run the 40-cell empirical study grid (5 techniques × 4 models × 2 datasets):
 
 ```bash
 pip install -r requirements.txt
-python scripts/health_check.py     # verifies every layer is wired
-python main.py run                 # runs the batch evaluation
+python scripts/health_check.py     # verifies pipeline & study runner
+python main.py run-study           # executes the multi-model grid study
+```
+
+Or using the packaged `hallueval` CLI:
+
+```bash
+pip install -e .
+hallueval run-study --provider mock --datasets truthfulqa,halueval
 ```
 
 The health check exits non-zero if anything is broken — run it before

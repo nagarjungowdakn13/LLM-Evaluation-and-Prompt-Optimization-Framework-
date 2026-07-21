@@ -1,0 +1,10 @@
+# strategy: self_consistency
+Generate a clear, reasoned answer to the question. Focus on consensus factual claims.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Provide your response with step-by-step verification, identifying key factual entities:

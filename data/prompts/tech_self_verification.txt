@@ -1,0 +1,14 @@
+# strategy: self_verification
+First, generate an initial answer to the question.
+Second, critique your initial answer for potential hallucinations, ungrounded claims, or false assumptions against the provided context.
+Third, output your corrected final verified answer.
+
+Context:
+{context}
+
+Question:
+{question}
+
+Pass 1 (Initial Answer):
+Pass 2 (Verification & Fact Check against context):
+Final Verified Answer:
